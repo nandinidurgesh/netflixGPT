@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import './App.css'
+import Body from './components/Body';
 
 function App() {
 
   return (
-   <><h1>React App</h1></>
+   <Body/>
   )
 }
 
