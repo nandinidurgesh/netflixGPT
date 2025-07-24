@@ -25,7 +25,6 @@ dist-ssr
 
 .env
 .env.* 
-dist/
 .vite/
 .DS_Store
 *.tsbuildinfo
