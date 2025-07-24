@@ -1,2 +1,7 @@
-# netflixGPT
-An application like Netflix, built in react along with GPT API integration to recommend movies based on your chat. 
+## Netflix GPT
+ - React + Vite
+ - Tailwind
+
+## Features 
+- Login/Signup Form 
+   - Floating Labels using peer and absolute. 
