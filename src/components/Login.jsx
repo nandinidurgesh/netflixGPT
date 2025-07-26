@@ -4,10 +4,16 @@ import { validateForm } from "../utils/Validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -38,7 +44,26 @@ const Login = () => {
         )
           .then((userCredential) => {
             const user = userCredential.user;
-            console.log("User created:", user);
+            updateProfile(user, {
+              displayName: nameRef.current.value,
+              photoURL:
+                "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZXxlbnwwfHwwfHx8MA%3D%3D",
+            })
+              .then(() => {
+                const { uid, email, displayName, photoURL } = auth.currentUser;
+                dispatch(
+                  setUser({
+                    email: email,
+                    uid: uid,
+                    displayName: displayName,
+                    photoURL: photoURL,
+                  })
+                );
+                navigate("/browse");
+              })
+              .catch((error) => {
+                setErrorMessage(error.message);
+              });
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -53,6 +78,7 @@ const Login = () => {
         )
           .then((userCredential) => {
             const user = userCredential.user;
+            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
