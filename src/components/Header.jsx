@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import UserMenu from "./UserMenu";
 import { useSelector } from "react-redux";
+import { auth } from "../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { setUser, removeUser } from "../utils/UserSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const selectedUser = useSelector((state) => state.user);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -19,13 +26,23 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setShowUserMenu(false);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          setUser({
+            email: email,
+            uid: uid,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/login");
       }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    });
   }, []);
 
   return (
@@ -50,12 +67,12 @@ const Header = () => {
           <img
             className="w-10 h-10 rounded-md cursor-pointer"
             alt="user Icon"
-            onMouseEnter={() => setShowUserMenu(true)}
+            onClick={() => setShowUserMenu(!showUserMenu)}
             src="https://occ-0-1492-3663.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
           ></img>
         </div>
       ) : null}
-      {showUserMenu && <UserMenu setShowUserMenu={setShowUserMenu} />}
+      {showUserMenu && <UserMenu />}
     </div>
   );
 };

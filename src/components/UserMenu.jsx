@@ -4,24 +4,17 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const UserMenu = ({ setShowUserMenu }) => {
+const UserMenu = () => {
   const navigate = useNavigate();
   const selector = useSelector((store) => store.user);
 
   const handleSignout = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/login");
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+      .then(() => {})
+      .catch((error) => {});
   };
   return (
-    <div
-      className="absolute right-4 top-16 bg-black shadow-lg rounded-md p-4 w-56"
-      onMouseLeave={() => setShowUserMenu(false)}
-    >
+    <div className="absolute right-4 top-16 bg-black shadow-lg rounded-md p-4 w-56">
       <ul className="space-y-2 text-white">
         <li className="hover:underline opacity-40">Profile</li>
         <li className="hover:underline opacity-40">Account</li>
@@ -35,12 +28,12 @@ const UserMenu = ({ setShowUserMenu }) => {
         >
           <div className="flex items-center space-x-2">
             <img
-              src={selector.photoURL}
+              src={selector?.photoURL}
               alt="User Avatar"
               className="w-8 h-8 rounded-full"
             />
           </div>
-          Sign Out ({selector.displayName})
+          Sign Out ({selector?.displayName})
         </li>
       </ul>
     </div>
