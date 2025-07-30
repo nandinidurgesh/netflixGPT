@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { useDispatch } from "react-redux";
+import { USER_IMAGE } from "../utils/Constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -44,8 +45,7 @@ const Login = () => {
             const user = userCredential.user;
             updateProfile(user, {
               displayName: nameRef.current.value,
-              photoURL:
-                "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3V0ZXxlbnwwfHwwfHx8MA%3D%3D",
+              photoURL: USER_IMAGE,
             })
               .then(() => {
                 const { uid, email, displayName, photoURL } = auth.currentUser;

@@ -1,11 +1,8 @@
-import React, { use } from "react";
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const UserMenu = () => {
-  const navigate = useNavigate();
   const selector = useSelector((store) => store.user);
 
   const handleSignout = () => {
