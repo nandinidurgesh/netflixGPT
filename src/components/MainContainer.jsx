@@ -10,11 +10,7 @@ const MainContainer = () => {
   );
 
   if (loading || !featuredMovie) {
-    return (
-      <div className="text-white text-center mt-20 text-lg">
-        Loading featured movie...
-      </div>
-    );
+    return <div className="text-white text-center mt-20 text-lg"></div>;
   }
 
   const { original_title, overview, id } = featuredMovie;
