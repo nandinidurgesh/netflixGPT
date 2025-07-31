@@ -3,6 +3,7 @@ import VideoDescription from "./VideoDescription";
 import VideoBackground from "./VideoBackground";
 import useFeaturedMovie from "../hooks/useFeaturedMovie";
 import { API_BASE_URL } from "../utils/Constants";
+import { BrowseShimmer } from "./Shimmer";
 
 const MainContainer = () => {
   const { featuredMovie, loading } = useFeaturedMovie(
@@ -10,7 +11,7 @@ const MainContainer = () => {
   );
 
   if (loading || !featuredMovie) {
-    return <div className="text-white text-center mt-20 text-lg"></div>;
+    return <BrowseShimmer />;
   }
 
   const { original_title, overview, id } = featuredMovie;
