@@ -1,7 +1,10 @@
 import MovieCard from "./MovieCard";
-import ShimmerCard from "./ShimmerCard";
+import { ShimmerRow } from "./Shimmer";
 
 const MovieList = ({ title, movies, scrollRef, handleScroll, loading }) => {
+  if (loading) {
+    return <ShimmerRow title={title} />;
+  }
   if (!movies || movies.length === 0) {
     return <div className="text-center text-gray-500"></div>;
   }
@@ -16,10 +19,6 @@ const MovieList = ({ title, movies, scrollRef, handleScroll, loading }) => {
         {movies?.map((movie, index) => (
           <MovieCard key={`${title}-${movie.id}-${index}`} movie={movie} />
         ))}
-        {loading &&
-          Array(6)
-            .fill("")
-            .map((_, index) => <ShimmerCard key={index} />)}
       </div>
     </div>
   );
