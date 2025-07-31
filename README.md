@@ -23,3 +23,5 @@
   - Secondary container with movie list.
   - Different Categories of movies.
   - Infinite HZ Scroll with duplicate filter.
+  - Shimmer
+  - Bug : Client Side routing refresh issue.
