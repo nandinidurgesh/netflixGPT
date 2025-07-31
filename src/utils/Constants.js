@@ -9,3 +9,7 @@ export const API_OPTIONS = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmODJkZjQxZTAwZDI4N2EwYzQ5MzRmNmM3NjBiNzJlZSIsIm5iZiI6MTc1MzcwNDgzMi4yNjgsInN1YiI6IjY4ODc2OTgwZWYzYzQ3YWI4YjU1ZjkxMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ecURRx8qOTOGuYNxieiWsxcD_UL1QsLEBtLjmqn828o'
   }
 };
+
+export const API_BASE_URL = "https://api.themoviedb.org/3/movie";
+
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";

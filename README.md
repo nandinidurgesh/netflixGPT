@@ -19,3 +19,7 @@
   - User Menu with Signout feature
   - Firebase updateProfile API implementation
   - Custom Hook to fetch movies using TMDB's nowPlayingMovies API and dispatching it in a store.
+  - Hero Container with background trailer video with title and description of the movie
+  - Secondary container with movie list.
+  - Different Categories of movies.
+  - Infinite HZ Scroll with duplicate filter.

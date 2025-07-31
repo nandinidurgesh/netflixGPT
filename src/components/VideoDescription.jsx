@@ -2,7 +2,7 @@ import React from "react";
 
 const VideoDescription = ({ title, description }) => {
   return (
-    <div className="width-screen aspect-video bg-gradient-to-r from-black flex flex-col justify-center items-start p-4 text-white pl-8 pr-8 absolute pt-[12%]">
+    <div className="width-screen aspect-video bg-gradient-to-r from-black flex flex-col justify-center items-start  text-white pl-8 absolute ">
       <span className="text-6xl font-bold">{title}</span>
       <span className="text-sm w-1/3 mt-4">{description}</span>
       <div className="flex items-center gap-4 mt-4">

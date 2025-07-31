@@ -1,18 +1,29 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import VideoDescription from "./VideoDescription";
 import VideoBackground from "./VideoBackground";
+import useFeaturedMovie from "../hooks/useFeaturedMovie";
+import { API_BASE_URL } from "../utils/Constants";
 
 const MainContainer = () => {
-  const movies = useSelector((state) => state.movie?.nowPlayingmovies);
-  if (!movies) return;
-  const backgroundVideo = movies?.[0];
-  const { original_title, overview, id } = backgroundVideo;
+  const { featuredMovie, loading } = useFeaturedMovie(
+    `${API_BASE_URL}/now_playing`
+  );
+
+  if (loading || !featuredMovie) {
+    return (
+      <div className="text-white text-center mt-20 text-lg">
+        Loading featured movie...
+      </div>
+    );
+  }
+
+  const { original_title, overview, id } = featuredMovie;
+
   return (
-    <div>
+    <>
       <VideoDescription title={original_title} description={overview} />
       <VideoBackground movieId={id} />
-    </div>
+    </>
   );
 };
 

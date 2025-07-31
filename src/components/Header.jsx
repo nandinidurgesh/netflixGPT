@@ -51,7 +51,8 @@ const Header = () => {
     <div
       className={
         selectedUser
-          ? `sticky flex justify-between items-center p-8 top-0 w-screen h-16 z-50 transition-colors duration-300 bg-black
+          ? `sticky flex justify-between items-center p-8 top-0 w-screen h-16 z-50 transition-colors duration-300 ${
+              isScrolled ? "bg-black" : "bg-black"
             }`
           : "w-screen h-16"
       }
